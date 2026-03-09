@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="李宗吾《厚黑学》原著深度解析：厚黑三境、历史镜鉴、办事妙法，揭示中国传统权谋智慧">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>厚黑学全本 · 李宗吾原著解析 | 权谋智慧的三重境界</title>
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --ink-black: #050505;
+            --deep-black: #0f0f0f;
+            --gold: #d4af37;
+            --gold-light: #f4d03f;
+            --cinnabar: #c9372c;
+            --jade: #2d5016;
+            --text-primary: #e5e5e5;
+            --text-secondary: #a3a3a3;
+        }
+        
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--ink-black);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .serif {
+            font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+        }
+        
+        /* 优化后的宣纸纹理背景 - 性能优化 */
+        .texture-bg {
+            background-color: var(--ink-black);
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 3px,
+                    rgba(212, 175, 55, 0.02) 3px,
+                    rgba(212, 175, 55, 0.02) 6px
+                ),
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        /* 金色渐变文字 - 增加对比度 */
+        .gold-text {
+            background: linear-gradient(135deg, #f4d03f 0%, #d4af37 50%, #b8941f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        /* 印章效果优化 */
+        .seal {
+            border: 2px solid var(--cinnabar);
+            color: var(--cinnabar);
+            padding: 0.4rem 0.8rem;
+            display: inline-block;
+            transform: rotate(-3deg);
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            position: relative;
+            font-size: 0.875rem;
+            box-shadow: 0 2px 4px rgba(201, 55, 44, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .seal:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+        
+        .seal::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border: 1px solid var(--cinnabar);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        /* 卷轴装饰优化 */
+        .scroll-edge {
+            background: linear-gradient(to right, 
+                transparent 0%, 
+                rgba(212, 175, 55, 0.4) 15%, 
+                rgba(212, 175, 55, 0.4) 85%, 
+                transparent 100%
+            );
+            height: 1px;
+            width: 100%;
+            position: relative;
+        }
+        
+        .scroll-edge::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: -2px;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 5px;
+            background: var(--gold);
+            border-radius: 3px;
+        }
+        
+        /* 三层境界卡片 - 优化移动端触摸 */
+        .realm-card {
+            background: linear-gradient(145deg, rgba(20, 20, 20, 0.95), rgba(10, 10, 10, 0.98));
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        
+        .realm-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.08), transparent);
+            transition: left 0.6s;
+        }
+        
+        .realm-card:active::before,
+        .realm-card:hover::before {
+            left: 100%;
+        }
+        
+        .realm-card:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.08);
+        }
+        
+        /* 人物分析面板 - 修复移动端溢出问题 */
+        .character-panel {
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border-left: 3px solid var(--gold);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* 修复古文排版在移动端的问题 */
+        .classical-text {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            letter-spacing: 0.3em;
+            line-height: 2.2;
+            max-height: 500px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            text-align: left;
+        }
+        
+        /* 移动端古文横向排版 */
+        @media (max-width: 768px) {
+            .classical-text {
+                writing-mode: horizontal-tb;
+                letter-spacing: 0.1em;
+                line-height: 1.8;
+                max-height: none;
+                overflow-y: auto;
+                overflow-x: hidden;
+                text-align: justify;
+                padding-right: 0;
+            }
+        }
+        
+        /* 粒子背景 - 降低复杂度提升性能 */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        
+        /* 悬浮导航 - 修复移动端抖动 */
+        .nav-floating {
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        
+        /* 引用块优化 */
+        .quote-block {
+            border-left: 3px solid var(--cinnabar);
+            background: linear-gradient(90deg, rgba(201, 55, 44, 0.08), transparent);
+            position: relative;
+        }
+        
+        .quote-block::before {
+            content: '"';
+            position: absolute;
+            left: 0.5rem;
+            top: -0.5rem;
+            font-size: 2rem;
+            color: var(--cinnabar);
+            opacity: 0.3;
+            font-family: serif;
+        }
+        
+        /* 六真言标签 - 优化触摸目标 */
+        .mantra-tag {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            transition: all 0.3s;
+            min-height: 44px; /* 确保触摸目标足够大 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .mantra-tag:hover,
+        .mantra-tag:active {
+            background: rgba(212, 175, 55, 0.15);
+            transform: scale(1.02);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        /* 进度条优化 */
+        .progress-bar {
+            background: linear-gradient(90deg, var(--gold), var(--cinnabar));
+            height: 3px;
+            width: 0%;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        /* 修复移动端菜单 */
+        #mobile-toc {
+            max-height: calc(100vh - 64px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* 打印样式优化 */
+        @media print {
+            .nav-floating, #particles, .progress-bar { display: none; }
+            body { background: white; color: black; }
+            .realm-card { break-inside: avoid; }
+        }
+        
+        /* 减少动画（尊重用户偏好） */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            html { scroll-behavior: auto; }
+        }
+        
+        /* 加载状态 */
+        .skeleton {
+            background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* 修复iOS上的固定定位问题 */
+        @supports (-webkit-touch-callout: none) {
+            .nav-floating {
+                position: -webkit-sticky;
+                position: sticky;
+            }
+        }
+        
+        /* 优化滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* 选中文字样式 */
+        ::selection {
+            background: rgba(212, 175, 55, 0.3);
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="texture-bg">
+
+    <!-- 粒子背景画布 -->
+    <canvas id="particles"></canvas>
+    
+    <!-- 阅读进度条 -->
+    <div class="fixed top-0 left-0 w-full z-50">
+        <div class="progress-bar" id="reading-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="nav-floating fixed w-full z-40 top-0 transition-all duration-300" id="navbar" role="navigation" aria-label="主导航">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="seal">厚黑教主</div>
+                    <span class="serif text-lg md:text-xl font-bold gold-text hidden sm:block tracking-wider">李宗吾原著</span>
+                </div>
+                
+                <!-- 桌面端导航 -->
+                <div class="hidden md:flex space-x-8 text-sm tracking-widest">
+                    <a href="#intro" class="hover:text-yellow-500 transition-colors py-2 border-b-2 border-transparent hover:border-yellow-600">缘起</a>
+                    <a href="#realms" class="hover:text-yellow-500 transition-colors py-2 border-b-2 border-transparent hover:border-yellow-600">三重境界</a>
+                    <a href="#cases" class="hover:text-yellow-500 transition-colors py-2 border-b-2 border-transparent hover:border-yellow-600">历史镜鉴</a>
+                    <a href="#methods" class="hover:text-yellow-500 transition-colors py-2 border-b-2 border-transparent hover:border-yellow-600">方法论</a>
+                    <a href="#texts" class="hover:text-yellow-500 transition-colors py-2 border-b-2 border-transparent hover:border-yellow-600">经文</a>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <button onclick="toggleToc()" class="md:hidden text-yellow-500 p-2 rounded-lg hover:bg-yellow-900/20 transition-colors" aria-label="切换菜单" aria-expanded="false" id="menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 移动端目录 -->
+        <div id="mobile-toc" class="hidden md:hidden bg-black/98 border-t border-yellow-900/30 absolute w-full shadow-2xl" role="menu">
+            <div class="flex flex-col p-4 space-y-1">
+                <a href="#intro" class="text-gray-300 hover:text-yellow-500 hover:bg-yellow-900/10 px-4 py-3 rounded transition-colors text-sm tracking-wider" role="menuitem" onclick="closeToc()">一、厚黑缘起</a>
+                <a href="#realms" class="text-gray-300 hover:text-yellow-500 hover:bg-yellow-900/10 px-4 py-3 rounded transition-colors text-sm tracking-wider" role="menuitem" onclick="closeToc()">二、三重境界</a>
+                <a href="#cases" class="text-gray-300 hover:text-yellow-500 hover:bg-yellow-900/10 px-4 py-3 rounded transition-colors text-sm tracking-wider" role="menuitem" onclick="closeToc()">三、历史镜鉴</a>
+                <a href="#methods" class="text-gray-300 hover:text-yellow-500 hover:bg-yellow-900/10 px-4 py-3 rounded transition-colors text-sm tracking-wider" role="menuitem" onclick="closeToc()">四、办事妙法</a>
+                <a href="#texts" class="text-gray-300 hover:text-yellow-500 hover:bg-yellow-900/10 px-4 py-3 rounded transition-colors text-sm tracking-wider" role="menuitem" onclick="closeToc()">五、厚黑经文</a>
+                <a href="#evaluation" class="text-gray-300 hover:text-yellow-500 hover:bg-yellow-900/10 px-4 py-3 rounded transition-colors text-sm tracking-wider" role="menuitem" onclick="closeToc()">六、学术评骘</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首屏 Hero -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 px-4" role="banner">
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="absolute inset-0" style="background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #000000 11px), repeating-linear-gradient(#1a1a1a, #1a1a1a);"></div>
+        </div>
+        
+        <div class="relative z-10 text-center max-w-5xl mx-auto">
+            <div class="mb-6 fade-up">
+                <span class="inline-block px-4 py-1.5 border border-yellow-600/50 rounded-full text-yellow-600 text-xs md:text-sm tracking-[0.2em] mb-6 bg-black/30 backdrop-blur-sm">
+                    民国奇书 · 千古不传之秘
+                </span>
+            </div>
+            
+            <h1 class="serif text-5xl md:text-7xl lg:text-8xl font-black mb-4 fade-up tracking-tight leading-none">
+                <span class="gold-text block mb-2">厚黑学</span>
+                <span class="text-xl md:text-3xl font-normal text-gray-500 tracking-[0.3em] block mt-4 opacity-80">HOU HEI XUE</span>
+            </h1>
+            
+            <div class="scroll-edge my-6 md:my-8 max-w-md mx-auto fade-up"></div>
+            
+            <p class="text-base md:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed mb-8 fade-up serif px-4">
+                脸皮要<span class="text-yellow-500 font-bold">厚而无形</span>，心子要<span class="text-red-500 font-bold">黑而无色</span><br class="hidden md:block">
+                此千古不传之秘，李宗吾抉其奥，剥尽历代英雄之画皮
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-up px-4">
+                <button onclick="scrollToSection('intro')" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-yellow-700 to-yellow-600 text-black font-bold rounded hover:from-yellow-600 hover:to-yellow-500 transition-all transform hover:scale-105 shadow-lg shadow-yellow-900/30 active:scale-95 text-sm tracking-wider">
+                    探寻本源
+                </button>
+                <button onclick="scrollToSection('realms')" class="w-full sm:w-auto px-8 py-3.5 border border-yellow-600/50 text-yellow-500 font-bold rounded hover:bg-yellow-900/20 transition-all text-sm tracking-wider active:scale-95">
+                    参悟境界
+                </button>
+            </div>
+            
+            <div class="mt-12 md:mt-16 text-xs md:text-sm text-gray-600 fade-up">
+                <p>自序曰：不薄之谓厚，不白之谓黑</p>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[#050505] to-transparent pointer-events-none"></div>
+    </header>
+
+    <!-- 第一部分：缘起与作者 -->
+    <section id="intro" class="py-16 md:py-24 relative" role="region" aria-label="厚黑缘起">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+                <div class="fade-up">
+                    <h2 class="serif text-3xl md:text-4xl font-bold mb-4 gold-text">厚黑缘起</h2>
+                    <div class="w-20 h-1 bg-gradient-to-r from-yellow-600 to-red-600 mb-6"></div>
+                    
+                    <div class="prose prose-invert max-w-none">
+                        <p class="text-gray-300 leading-relaxed mb-4 text-base md:text-lg">
+                            民国元年（1912年），四川富顺自流井人<strong class="text-yellow-500">李宗吾</strong>（1879-1943），在成都《公论日报》发表《厚黑学》，自号"厚黑教主"，揭橥千古不传之秘。
+                        </p>
+                        
+                        <div class="quote-block pl-6 py-4 pr-4 my-6 italic text-gray-400 text-sm md:text-base rounded-r-lg">
+                            吾将千古不传之秘，一语道破：古之为英雄豪杰者，不过面厚心黑而已。三国英雄，首推曹操，其特长全在心黑；其次刘备，其特长全在脸皮厚。
+                        </div>
+                        
+                        <p class="text-gray-300 leading-relaxed mb-4 text-base">
+                            李宗吾认为，孟子的性善说与荀子的性恶说皆有所偏，故以物理学之方法研究心理学，指出<strong class="text-white">"厚黑"乃人性之本源</strong>，与王阳明"致良知"亦相通。
+                        </p>
+                        
+                        <div class="mt-6 pt-6 border-t border-gray-800">
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                <span class="text-yellow-600 font-bold">林语堂评：</span>"世间学说，每每误人，惟有李宗吾铁论《厚黑学》不会误人。"<br>
+                                <span class="text-yellow-600 font-bold">柏杨评：</span>"一部二十四史，必须持此观点，才读得通。"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative fade-up mt-8 md:mt-0">
+                    <div class="bg-gradient-to-br from-gray-900 to-black p-6 md:p-8 rounded-lg border border-yellow-900/30 relative overflow-hidden shadow-2xl">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                        <h3 class="serif text-xl md:text-2xl font-bold mb-6 text-yellow-500 border-b border-yellow-900/30 pb-3">厚黑教主传略</h3>
+                        
+                        <dl class="space-y-3 text-sm">
+                            <div class="flex flex-col sm:flex-row sm:border-b sm:border-gray-800 sm:pb-2">
+                                <dt class="w-20 text-gray-500 shrink-0 mb-1 sm:mb-0">本名</dt>
+                                <dd class="text-gray-200">李宗世，后改宗吾（寓意"宗法孔子，吾自成一家"）</dd>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:border-b sm:border-gray-800 sm:pb-2">
+                                <dt class="w-20 text-gray-500 shrink-0 mb-1 sm:mb-0">生卒</dt>
+                                <dd class="text-gray-200">1879年2月3日 - 1943年9月28日</dd>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:border-b sm:border-gray-800 sm:pb-2">
+                                <dt class="w-20 text-gray-500 shrink-0 mb-1 sm:mb-0">籍贯</dt>
+                                <dd class="text-gray-200">四川富顺自流井（今自贡）</dd>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:border-b sm:border-gray-800 sm:pb-2">
+                                <dt class="w-20 text-gray-500 shrink-0 mb-1 sm:mb-0">学历</dt>
+                                <dd class="text-gray-200">四川高等学堂（川大前身）习理学</dd>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:border-b sm:border-gray-800 sm:pb-2">
+                                <dt class="w-20 text-gray-500 shrink-0 mb-1 sm:mb-0">教职</dt>
+                                <dd class="text-gray-200">中学校长、省议员、督学</dd>
+                            </div>
+                            <div class="flex flex-col sm:flex-row pt-2">
+                                <dt class="w-20 text-gray-500 shrink-0 mb-1 sm:mb-0">著述</dt>
+                                <dd class="text-gray-200 text-xs md:text-sm leading-relaxed">《厚黑学》《厚黑丛话》《厚黑别论》《心理与力学》《社会问题之商榷》等</dd>
+                            </div>
+                        </dl>
+                        
+                        <div class="mt-6 pt-4 border-t border-yellow-900/30">
+                            <p class="text-xs text-gray-500 leading-relaxed">
+                                宗吾为人正直，为官清廉，其著《厚黑学》乃正话反说，实刺官场黑暗，揭示历史真相，非教人为恶也。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第二部分：三重境界（核心） -->
+    <section id="realms" class="py-16 md:py-24 bg-black/30 relative overflow-hidden" role="region" aria-label="三重境界">
+        <div class="absolute inset-0 opacity-5 pointer-events-none">
+            <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(212,175,55,.1) 35px, rgba(212,175,55,.1) 70px);"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12 md:mb-16 fade-up">
+                <h2 class="serif text-3xl md:text-5xl font-bold mb-3 gold-text">厚黑三境</h2>
+                <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto px-4">
+                    厚黑之学，分上中下三乘，由浅入深，层层递进<br>
+                    <span class="text-yellow-600 text-xs md:text-sm mt-2 block">——《厚黑学·自序》</span>
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4 md:gap-8">
+                <!-- 第一境：初阶 -->
+                <div class="realm-card rounded-xl p-6 md:p-8 fade-up group" onclick="toggleRealm(1)" role="button" tabindex="0" aria-expanded="false" aria-controls="realm-detail-1">
+                    <div class="flex justify-between items-start mb-4 md:mb-6">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center border border-gray-600 group-hover:border-yellow-600 transition-colors shadow-lg">
+                            <span class="serif text-xl md:text-2xl font-bold text-gray-400 group-hover:text-yellow-500">壹</span>
+                        </div>
+                        <span class="text-xs text-gray-500 tracking-widest bg-gray-900/50 px-2 py-1 rounded">下乘·初学</span>
+                    </div>
+                    
+                    <h3 class="serif text-xl md:text-2xl font-bold mb-3 text-gray-300 group-hover:text-yellow-500 transition-colors">
+                        厚如城墙<br>黑如煤炭
+                    </h3>
+                    
+                    <div class="h-px w-full bg-gradient-to-r from-gray-700 to-transparent mb-4"></div>
+                    
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        面皮最初薄如纸，由分而寸，而尺，而丈，越叠加越厚，<strong class="text-gray-300">厚如城墙</strong>；心子由乳白而石蓝，而青蓝，而黑，越浸越黑，<strong class="text-gray-300">黑如煤炭</strong>。
+                    </p>
+                    
+                    <div class="bg-gray-900/50 p-3 md:p-4 rounded border-l-2 border-gray-600 group-hover:border-yellow-600 transition-colors">
+                        <p class="text-xs text-gray-500 italic leading-relaxed">
+                            "然此境界犹为初步，因城墙虽厚，尚可轰破；煤炭虽黑，令人厌恶，众人不敢近也。"
+                        </p>
+                    </div>
+                    
+                    <div class="mt-4 flex items-center text-xs text-yellow-600 opacity-60 group-hover:opacity-100 transition-opacity">
+                        <span>点击查看详情</span>
+                        <svg class="w-4 h-4 ml-1 transform transition-transform" id="arrow-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    
+                    <!-- 展开内容 -->
+                    <div id="realm-detail-1" class="hidden mt-4 pt-4 border-t border-gray-800 text-sm text-gray-400 space-y-2" role="region">
+                        <p class="flex items-start"><span class="text-yellow-600 mr-2">•</span> 形迹外露，人人见其厚黑</p>
+                        <p class="flex items-start"><span class="text-yellow-600 mr-2">•</span> 如市井无赖，死乞白赖</p>
+                        <p class="flex items-start"><span class="text-yellow-600 mr-2">•</span> 虽可求得一官半职，终难成大事</p>
+                    </div>
+                </div>
+
+                <!-- 第二境：中阶 -->
+                <div class="realm-card rounded-xl p-6 md:p-8 fade-up group border-yellow-600/30 relative" onclick="toggleRealm(2)" role="button" tabindex="0" aria-expanded="false" aria-controls="realm-detail-2">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 hidden md:block">
+                        <span class="bg-yellow-600 text-black text-xs px-3 py-1 rounded-full font-bold tracking-widest shadow-lg">曹刘境界</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-start mb-4 md:mb-6 md:mt-2">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-yellow-900 to-black flex items-center justify-center border border-yellow-600 shadow-lg shadow-yellow-900/20">
+                            <span class="serif text-xl md:text-2xl font-bold text-yellow-500">贰</span>
+                        </div>
+                        <span class="text-xs text-yellow-600 tracking-widest bg-yellow-900/20 px-2 py-1 rounded">中乘·精进</span>
+                    </div>
+                    
+                    <h3 class="serif text-xl md:text-2xl font-bold mb-3 text-yellow-500">
+                        厚而硬<br>黑而亮
+                    </h3>
+                    
+                    <div class="h-px w-full bg-gradient-to-r from-yellow-600 to-transparent mb-4"></div>
+                    
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                        深于厚者，<strong class="text-yellow-500">任你如何攻打，他一点不动</strong>，如刘备之坚不可摧；深于黑者，如<strong class="text-yellow-500">退光漆招牌</strong>，越是黑，买主越多，如曹操之黑得透亮。
+                    </p>
+                    
+                    <div class="bg-yellow-900/10 p-3 md:p-4 rounded border-l-2 border-yellow-600">
+                        <p class="text-xs text-yellow-200/70 italic leading-relaxed">
+                            "人能做到第二步，固然与第一步有天渊之别，但还着了迹象，有形有色，所以曹刘的本事，我们一着眼就看出来了。"
+                        </p>
+                    </div>
+                    
+                    <div class="mt-4 flex items-center text-xs text-yellow-600 opacity-60 group-hover:opacity-100 transition-opacity">
+                        <span>点击查看详情</span>
+                        <svg class="w-4 h-4 ml-1 transform transition-transform" id="arrow-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    
+                    <div id="realm-detail-2" class="hidden mt-4 pt-4 border-t border-yellow-900/30 text-sm text-gray-300 space-y-2" role="region">
+                        <p class="flex items-start"><span class="text-yellow-500 mr-2">•</span> 厚至坚硬，攻不可破（刘备）</p>
+                        <p class="flex items-start"><span class="text-yellow-500 mr-2">•</span> 黑至发亮，反而诱人（曹操）</p>
+                        <p class="flex items-start"><span class="text-yellow-500 mr-2">•</span> 可称一世枭雄，割据一方</p>
+                        <p class="flex items-start"><span class="text-yellow-500 mr-2">•</span> 然终露痕迹，难为至境</p>
+                    </div>
+                </div>
+
+                <!-- 第三境：上阶 -->
+                <div class="realm-card rounded-xl p-6 md:p-8 fade-up group border-red-900/30" onclick="toggleRealm(3)" role="button" tabindex="0" aria-expanded="false" aria-controls="realm-detail-3">
+                    <div class="flex justify-between items-start mb-4 md:mb-6">
+                        <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-red-900 to-black flex items-center justify-center border border-red-800 shadow-lg shadow-red-900/20">
+                            <span class="serif text-xl md:text-2xl font-bold text-red-500">叁</span>
+                        </div>
+                        <span class="text-xs text-red-500 tracking-widest bg-red-900/20 px-2 py-1 rounded">上乘·化境</span>
+                    </div>
+                    
+                    <h3 class="serif text-xl md:text-2xl font-bold mb-3 text-gray-100">
+                        厚而无形<br>黑而无色
+                    </h3>
+                    
+                    <div class="h-px w-full bg-gradient-to-r from-red-800 to-transparent mb-4"></div>
+                    
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                        至厚至黑，<strong class="text-red-400">天下后世皆以为不厚不黑</strong>。此境界极不容易达到，只好在<strong class="text-red-400">古之大圣大贤</strong>中寻求。
+                    </p>
+                    
+                    <div class="bg-red-950/30 p-3 md:p-4 rounded border-l-2 border-red-800">
+                        <p class="text-xs text-red-200/60 italic leading-relaxed">
+                            "儒家的中庸要讲到'无声无臭'才能终止；学佛的人要到'菩提无树，明镜非台'才算正果；何况厚黑学是千古不传之秘，当然要到'无形无色'才算止境。"
+                        </p>
+                    </div>
+                    
+                    <div class="mt-4 flex items-center text-xs text-red-400 opacity-60 group-hover:opacity-100 transition-opacity">
+                        <span>点击查看详情</span>
+                        <svg class="w-4 h-4 ml-1 transform transition-transform" id="arrow-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    
+                    <div id="realm-detail-3" class="hidden mt-4 pt-4 border-t border-red-900/20 text-sm text-gray-300 space-y-2" role="region">
+                        <p class="flex items-start"><span class="text-red-400 mr-2">•</span> 大智若愚，大巧若拙</p>
+                        <p class="flex items-start"><span class="text-red-400 mr-2">•</span> 仁义充塞，上下信之</p>
+                        <p class="flex items-start"><span class="text-red-400 mr-2">•</span> 不厚不黑，乃厚黑之极致</p>
+                        <p class="flex items-start"><span class="text-red-400 mr-2">•</span> 可开基立业，传世久远</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 境界对比图表 -->
+            <div class="mt-12 md:mt-16 bg-gray-900/30 rounded-2xl p-6 md:p-8 border border-gray-800 fade-up">
+                <h4 class="serif text-lg md:text-xl font-bold mb-6 text-center text-gray-300">厚黑层次递进图</h4>
+                <div class="relative py-8">
+                    <div class="hidden md:block absolute top-1/2 left-12 right-12 h-0.5 bg-gradient-to-r from-gray-700 via-yellow-600 to-red-800 -translate-y-1/2 z-0"></div>
+                    
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-0">
+                        <div class="relative z-10 flex flex-col items-center w-full md:w-auto group">
+                            <div class="w-3 h-3 md:w-4 md:h-4 rounded-full bg-gray-600 mb-3 group-hover:scale-150 transition-transform duration-300 ring-4 ring-gray-900"></div>
+                            <div class="text-center">
+                                <div class="text-gray-400 font-bold mb-1 text-sm">下乘</div>
+                                <div class="text-xs text-gray-600">有形有色<br class="hidden md:block">易破易识</div>
+                            </div>
+                        </div>
+                        
+                        <div class="relative z-10 flex flex-col items-center w-full md:w-auto group">
+                            <div class="w-3 h-3 md:w-4 md:h-4 rounded-full bg-yellow-600 mb-3 group-hover:scale-150 transition-transform duration-300 shadow-lg shadow-yellow-600/50 ring-4 ring-gray-900"></div>
+                            <div class="text-center">
+                                <div class="text-yellow-600 font-bold mb-1 text-sm">中乘</div>
+                                <div class="text-xs text-yellow-600/70">硬而亮<br class="hidden md:block">曹刘分治</div>
+                            </div>
+                        </div>
+                        
+                        <div class="relative z-10 flex flex-col items-center w-full md:w-auto group">
+                            <div class="w-4 h-4 md:w-6 md:h-6 rounded-full bg-gradient-to-r from-red-800 to-red-600 mb-3 group-hover:scale-125 transition-transform duration-300 shadow-lg shadow-red-900/50 ring-4 ring-gray-900"></div>
+                            <div class="text-center">
+                                <div class="text-red-500 font-bold mb-1 text-base">上乘</div>
+                                <div class="text-xs text-red-400/70">无形无色<br class="hidden md:block">大圣大贤</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第三部分：历史人物案例分析 -->
+    <section id="cases" class="py-16 md:py-24 relative" role="region" aria-label="历史镜鉴">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-up">
+                <h2 class="serif text-3xl md:text-4xl font-bold mb-3 gold-text">历史镜鉴</h2>
+                <p class="text-gray-400 text-sm md:text-base px-4">一部二十四史，可一以贯之：厚黑而已</p>
+            </div>
+
+            <!-- 三国人物 tabs -->
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12 fade-up px-2">
+                <button onclick="showCharacter('caocao')" id="tab-caocao" class="px-4 md:px-6 py-2.5 md:py-3 rounded-lg text-sm md:text-base transition-all duration-300 border active-character bg-red-950/50 border-red-800 text-red-400 hover:bg-red-900/50" aria-pressed="true">
+                    曹操 · 心黑
+                </button>
+                <button onclick="showCharacter('liubei')" id="tab-liubei" class="px-4 md:px-6 py-2.5 md:py-3 rounded-lg text-sm md:text-base transition-all duration-300 border bg-gray-800 border-gray-700 text-gray-400 hover:bg-yellow-900/30 hover:text-yellow-500 hover:border-yellow-700" aria-pressed="false">
+                    刘备 · 脸厚
+                </button>
+                <button onclick="showCharacter('sunquan')" id="tab-sunquan" class="px-4 md:px-6 py-2.5 md:py-3 rounded-lg text-sm md:text-base transition-all duration-300 border bg-gray-800 border-gray-700 text-gray-400 hover:bg-blue-900/30 hover:text-blue-400 hover:border-blue-700" aria-pressed="false">
+                    孙权 · 兼备
+                </button>
+                <button onclick="showCharacter('sima')" id="tab-sima" class="px-4 md:px-6 py-2.5 md:py-3 rounded-lg text-sm md:text-base transition-all duration-300 border bg-gray-800 border-gray-700 text-gray-400 hover:bg-purple-900/30 hover:text-purple-400 hover:border-purple-700" aria-pressed="false">
+                    司马懿 · 大成
+                </button>
+            </div>
+
+            <!-- 人物面板容器 -->
+            <div class="relative min-h-[600px] md:min-h-[500px]">
+                <!-- 曹操面板 -->
+                <div id="panel-caocao" class="character-panel rounded-xl p-6 md:p-12 fade-up block" role="tabpanel" aria-labelledby="tab-caocao">
+                    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                        <div class="md:col-span-1">
+                            <div class="aspect-[3/4] bg-gradient-to-b from-red-950 to-black rounded-lg border border-red-900/50 flex items-center justify-center relative overflow-hidden shadow-2xl">
+                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-500/20 to-transparent"></div>
+                                <div class="serif text-6xl md:text-7xl text-red-600/20 font-black select-none">操</div>
+                                <div class="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur p-3 rounded">
+                                    <div class="text-red-500 font-bold text-lg">曹操</div>
+                                    <div class="text-red-400/60 text-sm">155-220</div>
+                                </div>
+                            </div>
+                            <div class="mt-4 space-y-2">
+                                <div class="flex justify-between text-xs items-center">
+                                    <span class="text-gray-500">心黑指数</span>
+                                    <div class="flex gap-1">
+                                        <div class="w-6 h-1.5 bg-red-600 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-red-600 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-red-600 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-red-600 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-red-600 rounded-sm"></div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between text-xs items-center">
+                                    <span class="text-gray-500">脸皮厚度</span>
+                                    <div class="flex gap-1">
+                                        <div class="w-6 h-1.5 bg-gray-700 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-gray-700 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-gray-700 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-gray-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-gray-800 rounded-sm"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="md:col-span-2 space-y-4 md:space-y-6">
+                            <div>
+                                <h3 class="serif text-2xl md:text-3xl font-bold text-red-500 mb-2">治世之能臣，乱世之奸雄</h3>
+                                <p class="text-gray-400 italic text-sm md:text-base">"宁教我负天下人，休教天下人负我"</p>
+                            </div>
+                            
+                            <div class="prose prose-invert max-w-none">
+                                <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+                                    曹操为三国时心黑第一。他杀吕伯奢、杀孔融、杀杨修、杀董承伏完，杀皇后皇子，<strong class="text-red-400">其心之黑，亦云至矣</strong>。他公然宣称"宁我负人，毋人负我"的人生哲学，奸雄嘴脸暴露无遗。
+                                </p>
+                                
+                                <div class="bg-red-950/20 border-l-4 border-red-800 p-4 md:p-6 my-4 md:my-6 rounded-r-lg">
+                                    <h4 class="text-red-400 font-bold mb-2 flex items-center text-sm md:text-base">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+                                        厚黑评析：黑而亮
+                                    </h4>
+                                    <p class="text-xs md:text-sm text-gray-300 leading-relaxed">
+                                        曹操之黑，已达到"黑而亮"的境界。如退光漆招牌，<strong class="text-red-300">越是黑，买主越多</strong>。中原名流倾心归服，实因其黑得透亮，天下豪杰明知其黑而愿依附之。此乃黑学中乘境界。
+                                    </p>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mt-4">
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-red-900/50 transition-colors">
+                                        <div class="text-red-500 font-bold text-sm mb-1">杀吕伯奢</div>
+                                        <p class="text-xs text-gray-400 leading-snug">误杀故人全家，明知错杀仍斩草除根，曰："宁我负人，毋人负我。"</p>
+                                    </div>
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-red-900/50 transition-colors">
+                                        <div class="text-red-500 font-bold text-sm mb-1">粮官借头</div>
+                                        <p class="text-xs text-gray-400 leading-snug">军心不稳时，斩粮官王垕以安众心，黑至极致而亮至极致。</p>
+                                    </div>
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-red-900/50 transition-colors">
+                                        <div class="text-red-500 font-bold text-sm mb-1">梦中杀人</div>
+                                        <p class="text-xs text-gray-400 leading-snug">诈称梦中好杀人，近侍 cover 被而杀之，以威慑左右。</p>
+                                    </div>
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-red-900/50 transition-colors">
+                                        <div class="text-red-500 font-bold text-sm mb-1">屠杀徐州</div>
+                                        <p class="text-xs text-gray-400 leading-snug">为父报仇，屠城戮民，"泗水为之不流"，心黑至极。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 刘备面板 -->
+                <div id="panel-liubei" class="character-panel rounded-xl p-6 md:p-12 hidden fade-up border-yellow-600" role="tabpanel" aria-labelledby="tab-liubei">
+                    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                        <div class="md:col-span-1">
+                            <div class="aspect-[3/4] bg-gradient-to-b from-yellow-950 to-black rounded-lg border border-yellow-900/50 flex items-center justify-center relative overflow-hidden shadow-2xl">
+                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-500/20 to-transparent"></div>
+                                <div class="serif text-6xl md:text-7xl text-yellow-600/20 font-black select-none">备</div>
+                                <div class="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur p-3 rounded">
+                                    <div class="text-yellow-500 font-bold text-lg">刘备</div>
+                                    <div class="text-yellow-400/60 text-sm">161-223</div>
+                                </div>
+                            </div>
+                            <div class="mt-4 space-y-2">
+                                <div class="flex justify-between text-xs items-center">
+                                    <span class="text-gray-500">心黑指数</span>
+                                    <div class="flex gap-1">
+                                        <div class="w-6 h-1.5 bg-gray-700 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-gray-700 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-gray-700 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-yellow-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-gray-800 rounded-sm"></div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between text-xs items-center">
+                                    <span class="text-gray-500">脸皮厚度</span>
+                                    <div class="flex gap-1">
+                                        <div class="w-6 h-1.5 bg-yellow-600 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-yellow-600 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-yellow-600 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-yellow-600 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-yellow-600 rounded-sm"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="md:col-span-2 space-y-4 md:space-y-6">
+                            <div>
+                                <h3 class="serif text-2xl md:text-3xl font-bold text-yellow-500 mb-2">织席贩履，终成帝业</h3>
+                                <p class="text-gray-400 italic text-sm md:text-base">"刘备的江山是哭出来的"</p>
+                            </div>
+                            
+                            <div class="prose prose-invert max-w-none">
+                                <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+                                    刘备全在脸皮厚。他依曹操、依吕布、依刘表、依孙权、依袁绍，<strong class="text-yellow-400">东窜西走，寄人篱下，恬不知耻</strong>。而稗史所记生平善哭之状，尚不计焉。其面之厚，亦云至矣。
+                                </p>
+                                
+                                <div class="bg-yellow-950/20 border-l-4 border-yellow-600 p-4 md:p-6 my-4 md:my-6 rounded-r-lg">
+                                    <h4 class="text-yellow-500 font-bold mb-2 flex items-center text-sm md:text-base">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+                                        厚黑评析：厚而硬
+                                    </h4>
+                                    <p class="text-xs md:text-sm text-gray-300 leading-relaxed">
+                                        刘备之厚，已达"厚而硬"的境界。<strong class="text-yellow-300">任你如何攻打，他一点不动</strong>。曹操煮酒论英雄时，刘备借惊雷掩饰，装怯装愚；当阳之败，为跑得更快，推亲生儿女下车。其厚如城墙，且坚不可摧。
+                                    </p>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mt-4">
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-yellow-900/50 transition-colors">
+                                        <div class="text-yellow-500 font-bold text-sm mb-1">三让徐州</div>
+                                        <p class="text-xs text-gray-400 leading-snug">再三推辞徐州牧之位，以退为进，既得名声又获实利。</p>
+                                    </div>
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-yellow-900/50 transition-colors">
+                                        <div class="text-yellow-500 font-bold text-sm mb-1">投靠群雄</div>
+                                        <p class="text-xs text-gray-400 leading-snug">先后依附吕布、曹操、袁绍、刘表，毫无愧色，能屈能伸。</p>
+                                    </div>
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-yellow-900/50 transition-colors">
+                                        <div class="text-yellow-500 font-bold text-sm mb-1">长坂坡摔阿斗</div>
+                                        <p class="text-xs text-gray-400 leading-snug">"为了这孺子，几损我一员大将！"收买赵云及将士之心。</p>
+                                    </div>
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-yellow-900/50 transition-colors">
+                                        <div class="text-yellow-500 font-bold text-sm mb-1">借荆州不还</div>
+                                        <p class="text-xs text-gray-400 leading-snug">"刘备借荆州，有借无还"，脸皮厚至极致。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 孙权面板 -->
+                <div id="panel-sunquan" class="character-panel rounded-xl p-6 md:p-12 hidden fade-up border-blue-600" role="tabpanel" aria-labelledby="tab-sunquan">
+                    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                        <div class="md:col-span-1">
+                            <div class="aspect-[3/4] bg-gradient-to-b from-blue-950 to-black rounded-lg border border-blue-900/50 flex items-center justify-center relative overflow-hidden shadow-2xl">
+                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/20 to-transparent"></div>
+                                <div class="serif text-6xl md:text-7xl text-blue-600/20 font-black select-none">权</div>
+                                <div class="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur p-3 rounded">
+                                    <div class="text-blue-500 font-bold text-lg">孙权</div>
+                                    <div class="text-blue-400/60 text-sm">182-252</div>
+                                </div>
+                            </div>
+                            <div class="mt-4 space-y-2">
+                                <div class="flex justify-between text-xs items-center">
+                                    <span class="text-gray-500">心黑指数</span>
+                                    <div class="flex gap-1">
+                                        <div class="w-6 h-1.5 bg-blue-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-blue-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-blue-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-gray-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-gray-800 rounded-sm"></div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between text-xs items-center">
+                                    <span class="text-gray-500">脸皮厚度</span>
+                                    <div class="flex gap-1">
+                                        <div class="w-6 h-1.5 bg-blue-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-blue-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-blue-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-gray-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-gray-800 rounded-sm"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="md:col-span-2 space-y-4 md:space-y-6">
+                            <div>
+                                <h3 class="serif text-2xl md:text-3xl font-bold text-blue-500 mb-2">紫髯碧眼，坐断东南</h3>
+                                <p class="text-gray-400 italic text-sm md:text-base">"生子当如孙仲谋"</p>
+                            </div>
+                            
+                            <div class="prose prose-invert max-w-none">
+                                <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+                                    孙权与刘备同盟，并且是郎舅之亲，忽然夺取荆州，把关羽杀了，心之黑，仿佛曹操；无奈黑不到底，跟著向蜀请和。他降曹丕，称臣受封，脸皮之厚，仿佛刘备；无奈厚不到底，跟著与魏绝交。
+                                </p>
+                                
+                                <div class="bg-blue-950/20 border-l-4 border-blue-600 p-4 md:p-6 my-4 md:my-6 rounded-r-lg">
+                                    <h4 class="text-blue-500 font-bold mb-2 flex items-center text-sm md:text-base">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+                                        厚黑评析：二者兼备
+                                    </h4>
+                                    <p class="text-xs md:text-sm text-gray-300 leading-relaxed">
+                                        孙权<strong class="text-blue-300">黑不如操，厚不如备</strong>，却是二者兼备。故能与曹刘并驾齐驱，三分天下。其反复无常，正是厚黑之术灵活运用，见机而作，不执一端。
+                                    </p>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mt-4">
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-blue-900/50 transition-colors">
+                                        <div class="text-blue-500 font-bold text-sm mb-1">夺荆州杀关羽</div>
+                                        <p class="text-xs text-gray-400 leading-snug">盟约在前，利欲在后，黑心如曹操，袭杀关羽。</p>
+                                    </div>
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-blue-900/50 transition-colors">
+                                        <div class="text-blue-500 font-bold text-sm mb-1">向蜀请和</div>
+                                        <p class="text-xs text-gray-400 leading-snug">黑不到底，惧怕报复，厚脸求和，随机应变。</p>
+                                    </div>
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-blue-900/50 transition-colors">
+                                        <div class="text-blue-500 font-bold text-sm mb-1">称臣曹丕</div>
+                                        <p class="text-xs text-gray-400 leading-snug">刘备伐吴时，厚脸向魏文帝称臣受封，以解困局。</p>
+                                    </div>
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-blue-900/50 transition-colors">
+                                        <div class="text-blue-500 font-bold text-sm mb-1">绝魏自立</div>
+                                        <p class="text-xs text-gray-400 leading-snug">危机过后，厚不到底，随即绝交称帝。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 司马懿面板 -->
+                <div id="panel-sima" class="character-panel rounded-xl p-6 md:p-12 hidden fade-up border-purple-600" role="tabpanel" aria-labelledby="tab-sima">
+                    <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                        <div class="md:col-span-1">
+                            <div class="aspect-[3/4] bg-gradient-to-b from-purple-950 to-black rounded-lg border border-purple-900/50 flex items-center justify-center relative overflow-hidden shadow-2xl">
+                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-500/20 to-transparent"></div>
+                                <div class="serif text-6xl md:text-7xl text-purple-600/20 font-black select-none">懿</div>
+                                <div class="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur p-3 rounded">
+                                    <div class="text-purple-500 font-bold text-lg">司马懿</div>
+                                    <div class="text-purple-400/60 text-sm">179-251</div>
+                                </div>
+                            </div>
+                            <div class="mt-4 space-y-2">
+                                <div class="flex justify-between text-xs items-center">
+                                    <span class="text-gray-500">心黑指数</span>
+                                    <div class="flex gap-1">
+                                        <div class="w-6 h-1.5 bg-purple-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-purple-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-purple-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-purple-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-purple-800 rounded-sm"></div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between text-xs items-center">
+                                    <span class="text-gray-500">脸皮厚度</span>
+                                    <div class="flex gap-1">
+                                        <div class="w-6 h-1.5 bg-purple-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-purple-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-purple-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-purple-800 rounded-sm"></div>
+                                        <div class="w-6 h-1.5 bg-purple-800 rounded-sm"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="md:col-span-2 space-y-4 md:space-y-6">
+                            <div>
+                                <h3 class="serif text-2xl md:text-3xl font-bold text-purple-500 mb-2">冢虎隐忍，终吞三国</h3>
+                                <p class="text-gray-400 italic text-sm md:text-base">"天下归司马氏矣"</p>
+                            </div>
+                            
+                            <div class="prose prose-invert max-w-none">
+                                <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+                                    司马氏父子算是受了曹刘诸人的薰陶，<strong class="text-purple-400">集厚黑学之大成</strong>。他能欺人寡妇孤儿，心之黑与曹操一样；能够受巾帼之辱，脸皮之厚，还更甚于刘备。
+                                </p>
+                                
+                                <div class="bg-purple-950/20 border-l-4 border-purple-600 p-4 md:p-6 my-4 md:my-6 rounded-r-lg">
+                                    <h4 class="text-purple-500 font-bold mb-2 flex items-center text-sm md:text-base">
+                                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+                                        厚黑评析：集大成者
+                                    </h4>
+                                    <p class="text-xs md:text-sm text-gray-300 leading-relaxed">
+                                        诸葛亮送女人衣服羞辱他，他坦然接受，穿着女装在军营走动，坚守不出，<strong class="text-purple-300">厚至极点</strong>；高平陵之变，诈誓言骗曹爽，转眼屠戮三族，<strong class="text-purple-300">黑至极点</strong>。故天下终归于司马氏。
+                                    </p>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mt-4">
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-purple-900/50 transition-colors">
+                                        <div class="text-purple-500 font-bold text-sm mb-1">受巾帼之辱</div>
+                                        <p class="text-xs text-gray-400 leading-snug">诸葛亮送妇人巾帼激将，司马懿欣然受之，厚脸不战而屈人之兵。</p>
+                                    </div>
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-purple-900/50 transition-colors">
+                                        <div class="text-purple-500 font-bold text-sm mb-1">诈病赚曹爽</div>
+                                        <p class="text-xs text-gray-400 leading-snug">装病多年，骗过曹爽，一朝发动高平陵之变，心黑如墨。</p>
+                                    </div>
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-purple-900/50 transition-colors">
+                                        <div class="text-purple-500 font-bold text-sm mb-1">指洛水为誓</div>
+                                        <p class="text-xs text-gray-400 leading-snug">发誓不害曹爽性命，旋即背信屠戮，黑至"无形无色"之境。</p>
+                                    </div>
+                                    <div class="bg-black/40 p-3 md:p-4 rounded border border-gray-800 hover:border-purple-900/50 transition-colors">
+                                        <div class="text-purple-500 font-bold text-sm mb-1">匍匐进食</div>
+                                        <p class="text-xs text-gray-400 leading-snug">为麻痹李胜，伪装病重，婢女扶持，拿衣指口，装聋作哑。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 回到顶部按钮 -->
+    <button onclick="scrollToTop()" id="back-to-top" class="fixed bottom-8 right-8 bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-500 p-3 rounded-full border border-yellow-600/50 opacity-0 pointer-events-none transition-all duration-300 z-40 backdrop-blur-sm" aria-label="回到顶部">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+    </button>
+
+    <script>
+        // 检查GSAP是否加载成功
+        if (typeof gsap === 'undefined') {
+            console.warn('GSAP not loaded, using fallback animations');
+            // 简单的CSS回退动画
+            document.querySelectorAll('.fade-up').forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+        } else {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // 优化后的淡入动画
+            gsap.utils.toArray('.fade-up').forEach(element => {
+                gsap.fromTo(element, 
+                    { opacity: 0, y: 20 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse",
+                            once: true // 只触发一次，提升性能
+                        }
+                    }
+                );
+            });
+        }
+
+        // 滚动进度条 - 使用 requestAnimationFrame 优化
+        let ticking = false;
+        function updateProgress() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const progressBar = document.getElementById('reading-progress');
+            if (progressBar) {
+                progressBar.style.width = scrolled + "%";
+                progressBar.setAttribute('aria-valuenow', Math.round(scrolled));
+            }
+            
+            // 控制回到顶部按钮
+            const backToTop = document.getElementById('back-to-top');
+            if (backToTop) {
+                if (winScroll > 500) {
+                    backToTop.classList.remove('opacity-0', 'pointer-events-none');
+                } else {
+                    backToTop.classList.add('opacity-0', 'pointer-events-none');
+                }
+            }
+            
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateProgress);
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // 优化后的粒子背景 - 降低粒子数量和复杂度
+        const canvas = document.getElementById('particles');
+        if (canvas && !window.matchMedia('(pointer: coarse)').matches) { // 在触摸设备上禁用粒子
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let animationId = null;
+            let isVisible = true;
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas, { passive: true });
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 1.5 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.3;
+                    this.speedY = (Math.random() - 0.5) * 0.3;
+                    this.opacity = Math.random() * 0.3 + 0.1;
+                }
+                
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    
+                    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                        this.reset();
+                    }
+                }
+                
+                draw() {
+                    ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                // 根据屏幕大小调整粒子数量
+                const count = window.innerWidth < 768 ? 30 : 50;
+                for (let i = 0; i < count; i++) {
+                    particles.push(new Particle());
+                }
+            }
+            initParticles();
+
+            let frameCount = 0;
+            function animateParticles() {
+                if (!isVisible) {
+                    animationId = requestAnimationFrame(animateParticles);
+                    return;
+                }
+                
+                frameCount++;
+                // 每2帧渲染一次，提升性能
+                if (frameCount % 2 === 0) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    particles.forEach(p => {
+                        p.update();
+                        p.draw();
+                    });
+                }
+                
+                animationId = requestAnimationFrame(animateParticles);
+            }
+            animateParticles();
+
+            // 页面不可见时暂停动画
+            document.addEventListener('visibilitychange', () => {
+                isVisible = !document.hidden;
+            });
+        } else if (canvas) {
+            // 移动端隐藏canvas
+            canvas.style.display = 'none';
+        }
+
+        // 导航功能
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                const offset = 80; // 导航栏高度
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = element.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // 移动端菜单控制
+        function toggleToc() {
+            const toc = document.getElementById('mobile-toc');
+            const btn = document.getElementById('menu-btn');
+            if (toc) {
+                const isHidden = toc.classList.contains('hidden');
+                if (isHidden) {
+                    toc.classList.remove('hidden');
+                    btn.setAttribute('aria-expanded', 'true');
+                } else {
+                    toc.classList.add('hidden');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            }
+        }
+
+        function closeToc() {
+            const toc = document.getElementById('mobile-toc');
+            const btn = document.getElementById('menu-btn');
+            if (toc) {
+                toc.classList.add('hidden');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        // 境界切换详情 - 添加键盘支持
+        function toggleRealm(id) {
+            const detail = document.getElementById(`realm-detail-${id}`);
+            const arrow = document.getElementById(`arrow-${id}`);
+            const card = document.querySelector(`[aria-controls="realm-detail-${id}"]`);
+            
+            if (detail && arrow) {
+                const isHidden = detail.classList.contains('hidden');
+                if (isHidden) {
+                    detail.classList.remove('hidden');
+                    arrow.classList.add('rotate-180');
+                    if (card) {
+                        card.setAttribute('aria-expanded', 'true');
+                        card.classList.add('border-yellow-600/50');
+                    }
+                } else {
+                    detail.classList.add('hidden');
+                    arrow.classList.remove('rotate-180');
+                    if (card) {
+                        card.setAttribute('aria-expanded', 'false');
+                        card.classList.remove('border-yellow-600/50');
+                    }
+                }
+            }
+        }
+
+        // 人物切换 - 修复状态管理
+        const characters = ['caocao', 'liubei', 'sunquan', 'sima'];
+        const charColors = {
+            'caocao': { bg: 'bg-red-950/50', text: 'text-red-400', border: 'border-red-800' },
+            'liubei': { bg: 'bg-yellow-950/50', text: 'text-yellow-500', border: 'border-yellow-700' },
+            'sunquan': { bg: 'bg-blue-950/50', text: 'text-blue-400', border: 'border-blue-700' },
+            'sima': { bg: 'bg-purple-950/50', text: 'text-purple-400', border: 'border-purple-700' }
+        };
+
+        function showCharacter(name) {
+            // 隐藏所有面板
+            characters.forEach(char => {
+                const panel = document.getElementById(`panel-${char}`);
+                const tab = document.getElementById(`tab-${char}`);
+                
+                if (panel && tab) {
+                    panel.classList.add('hidden');
+                    panel.classList.remove('block');
+                    tab.classList.remove(charColors[char].bg, charColors[char].text, charColors[char].border);
+                    tab.classList.add('bg-gray-800', 'text-gray-400', 'border-gray-700');
+                    tab.setAttribute('aria-pressed', 'false');
+                }
+            });
+            
+            // 显示选中面板
+            const activePanel = document.getElementById(`panel-${name}`);
+            const activeTab = document.getElementById(`tab-${name}`);
+            
+            if (activePanel && activeTab) {
+                activePanel.classList.remove('hidden');
+                activePanel.classList.add('block');
+                
+                activeTab.classList.remove('bg-gray-800', 'text-gray-400', 'border-gray-700');
+                activeTab.classList.add(charColors[name].bg, charColors[name].text, charColors[name].border);
+                activeTab.setAttribute('aria-pressed', 'true');
+                
+                // 滚动到人物区域（移动端）
+                if (window.innerWidth < 768) {
+                    document.getElementById('cases').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
+
+        // 六字真言详情
+        const mantraDetails = {
+            'kong': '<strong class="text-yellow-500 text-base">【空】</strong><p class="mt-2 text-sm leading-relaxed">办事要"空洞"，凡事不必求实际成效，只求表面敷衍。即今之所谓"形式主义"，只求程序正确，不问实质结果。</p>',
+            'gong': '<strong class="text-yellow-500 text-base">【恭】</strong><p class="mt-2 text-sm leading-relaxed">对上司要卑躬屈膝，低声下气。即今之所谓"态度端正"，对领导毕恭毕敬，言听计从，不犯上意。</p>',
+            'beng': '<strong class="text-yellow-500 text-base">【绷】</strong><p class="mt-2 text-sm leading-relaxed">对下属要绷起脸来，作威作福。即今之所谓"树立威信"，以权势压人，使人畏惧。</p>',
+            'xiong': '<strong class="text-yellow-500 text-base">【凶】</strong><p class="mt-2 text-sm leading-relaxed">遇到阻碍要凶狠无畏，不顾天理人情。即今之所谓"敢于碰硬"，以强力推进，不择手段。</p>',
+            'long': '<strong class="text-yellow-500 text-base">【聋】</strong><p class="mt-2 text-sm leading-relaxed">对批评建议要充耳不闻，装聋作哑。即今之所谓"选择性失聪"，只听好话，不听逆耳之言。</p>',
+            'nong': '<strong class="text-yellow-500 text-base">【弄】</strong><p class="mt-2 text-sm leading-relaxed">要弄虚作假，欺上瞒下。即今之所谓"上有政策，下有对策"，以权谋私，暗箱操作。</p>'
+        };
+
+        function showMantraDetail(key) {
+            const detail = document.getElementById('mantra-detail');
+            if (detail && mantraDetails[key]) {
+                detail.innerHTML = mantraDetails[key];
+                detail.classList.remove('border-gray-800', 'text-gray-500');
+                detail.classList.add('border-yellow-600/50', 'bg-yellow-950/10', 'text-gray-300');
+            }
+        }
+
+        // 办事妙法展开
+        function toggleMethod(id) {
+            const content = document.getElementById(`method-${id}`);
+            const arrow = document.getElementById(`arrow-${id}`);
+            if (content && arrow) {
+                const isHidden = content.classList.contains('hidden');
+                if (isHidden) {
+                    content.classList.remove('hidden');
+                    arrow.classList.add('rotate-180');
+                } else {
+                    content.classList.add('hidden');
+                    arrow.classList.remove('rotate-180');
+                }
+            }
+        }
+
+        // 导航栏滚动效果 - 使用 Intersection Observer 替代 scroll 事件
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const navbar = document.getElementById('navbar');
+                if (!entry.isIntersecting) {
+                    navbar.classList.add('shadow-lg', 'shadow-black/50');
+                } else {
+                    navbar.classList.remove('shadow-lg', 'shadow-black/50');
+                }
+            });
+        }, { threshold: 0.9 });
+
+        // 观察首屏元素
+        const hero = document.querySelector('header');
+        if (hero) navObserver.observe(hero);
+
+        // 键盘导航支持
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeToc();
+            }
+        });
+
+        // 点击外部关闭菜单
+        document.addEventListener('click', (e) => {
+            const toc = document.getElementById('mobile-toc');
+            const btn = document.getElementById('menu-btn');
+            if (toc && !toc.contains(e.target) && !btn.contains(e.target)) {
+                closeToc();
+            }
+        });
+
+        // 默认显示曹操
+        document.addEventListener('DOMContentLoaded', () => {
+            showCharacter('caocao');
+            
+            // 恢复阅读进度（如果用户之前访问过）
+            const savedProgress = localStorage.getItem('houhei-scroll');
+            if (savedProgress && !window.location.hash) {
+                // 询问用户是否恢复
+                if (confirm('检测到上次阅读进度，是否恢复？')) {
+                    window.scrollTo(0, parseInt(savedProgress));
+                }
+            }
+        });
+
+        // 保存阅读进度
+        let saveTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(saveTimeout);
+            saveTimeout = setTimeout(() => {
+                localStorage.setItem('houhei-scroll', window.scrollY);
+            }, 500);
+        }, { passive: true });
+
+        // 错误处理
+        window.addEventListener('error', (e) => {
+            console.error('页面错误:', e.error);
+        });
+    </script>
+</body>
+</html>
